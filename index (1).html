@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>New Ajees Medicals – Your Health, Our Priority</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<style>
+  :root {
+    --green: #1a9e6e;
+    --green-light: #22c98c;
+    --green-dark: #127a54;
+    --navy: #0d2243;
+    --navy-mid: #163460;
+    --navy-light: #1e4080;
+    --white: #ffffff;
+    --off-white: #f4f9f7;
+    --text-muted: #6b7a8d;
+    --card-bg: rgba(255,255,255,0.07);
+    --glass: rgba(255,255,255,0.12);
+    --radius: 16px;
+    --shadow: 0 8px 32px rgba(13,34,67,0.18);
+    --transition: 0.3s cubic-bezier(.4,0,.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(13,34,67,0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(26,158,110,0.18);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    transition: box-shadow var(--transition);
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: white;
+    flex-shrink: 0;
+  }
+  .nav-logo-text { line-height: 1.15; }
+  .nav-logo-text span:first-child {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.3px;
+  }
+  .nav-logo-text span:last-child {
+    font-size: 10.5px; color: var(--green-light);
+    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 8px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: all var(--transition);
+    letter-spacing: 0.2px;
+  }
+  .nav-links a:hover { color: var(--green-light); background: rgba(26,158,110,0.1); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: white !important;
+    padding: 8px 20px !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(26,158,110,0.4);
+    transition: all var(--transition) !important;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,158,110,0.5); background: rgba(26,158,110,0.1) !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 6px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: white; border-radius: 2px;
+    transition: all var(--transition);
+  }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-menu {
+    display: none; position: fixed;
+    top: 68px; left: 0; right: 0; z-index: 999;
+    background: rgba(13,34,67,0.98);
+    backdrop-filter: blur(16px);
+    padding: 20px 5% 30px;
+    border-bottom: 1px solid rgba(26,158,110,0.2);
+    flex-direction: column; gap: 6px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none; font-size: 15px;
+    padding: 12px 16px; border-radius: 10px;
+    font-weight: 500;
+    transition: all var(--transition);
+  }
+  .mobile-menu a:hover { background: rgba(26,158,110,0.15); color: var(--green-light); }
+  .mobile-menu .mob-cta {
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: white; text-align: center; margin-top: 8px;
+    border-radius: 50px; font-weight: 600;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0a3d2e 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+  }
+
+  /* Animated background elements */
+  .hero-bg-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
+  }
+  .orb1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(26,158,110,0.25) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation: orb-float 8s ease-in-out infinite;
+  }
+  .orb2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(34,201,140,0.15) 0%, transparent 70%);
+    bottom: -50px; left: 10%;
+    animation: orb-float 10s ease-in-out infinite reverse;
+  }
+  .orb3 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(26,158,110,0.2) 0%, transparent 70%);
+    top: 40%; left: 40%;
+    animation: orb-float 6s ease-in-out infinite;
+  }
+  @keyframes orb-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -20px) scale(1.05); }
+  }
+
+  /* Grid pattern */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(26,158,110,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,158,110,0.06) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  /* Floating medical icons */
+  .float-icon {
+    position: absolute; font-size: 22px;
+    opacity: 0.12; color: var(--green-light);
+    animation: icon-drift linear infinite;
+    pointer-events: none;
+  }
+  @keyframes icon-drift {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.12; }
+    90% { opacity: 0.12; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 640px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(26,158,110,0.15);
+    border: 1px solid rgba(26,158,110,0.3);
+    border-radius: 50px;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+    animation: fade-up 0.8s ease both;
+  }
+  .hero-badge span { font-size: 12px; font-weight: 600; color: var(--green-light); letter-spacing: 1px; text-transform: uppercase; }
+  .hero-badge i { color: var(--green-light); font-size: 13px; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.18;
+    margin-bottom: 16px;
+    animation: fade-up 0.8s 0.15s ease both;
+  }
+  .hero-title .highlight {
+    background: linear-gradient(90deg, var(--green-light), #7fffd4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+    animation: fade-up 0.8s 0.3s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fade-up 0.8s 0.45s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: white; text-decoration: none;
+    padding: 14px 28px; border-radius: 50px;
+    font-size: 15px; font-weight: 600;
+    box-shadow: 0 6px 24px rgba(26,158,110,0.4);
+    transition: all var(--transition);
+    letter-spacing: 0.2px;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(26,158,110,0.55); }
+
+  .btn-whatsapp {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: white; text-decoration: none;
+    padding: 14px 28px; border-radius: 50px;
+    font-size: 15px; font-weight: 600;
+    backdrop-filter: blur(8px);
+    transition: all var(--transition);
+  }
+  .btn-whatsapp:hover {
+    background: rgba(37,211,102,0.2);
+    border-color: #25d366;
+    transform: translateY(-3px);
+  }
+
+  /* Glass card floating right */
+  .hero-glass-card {
+    position: absolute; right: 7%; top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    padding: 32px 28px;
+    width: 260px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fade-up 1s 0.6s ease both;
+    z-index: 2;
+  }
+  .glass-stat {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .glass-stat:last-child { border-bottom: none; padding-bottom: 0; }
+  .glass-stat:first-child { padding-top: 0; }
+  .stat-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(26,158,110,0.3), rgba(34,201,140,0.15));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--green-light);
+    flex-shrink: 0;
+  }
+  .stat-info span:first-child {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; color: white;
+  }
+  .stat-info span:last-child { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; z-index: 2;
+    animation: pulse-down 2s ease-in-out infinite;
+  }
+  .scroll-hint i { font-size: 16px; }
+  @keyframes pulse-down {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
+    50% { transform: translateX(-50%) translateY(6px); opacity: 0.8; }
+  }
+
+  /* ── SECTION STYLES ── */
+  section { padding: 90px 5%; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--green);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-label::before {
+    content: ''; width: 28px; height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--green-light));
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700; color: var(--navy);
+    line-height: 1.25; margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 15px; color: var(--text-muted);
+    font-weight: 400; max-width: 520px;
+    line-height: 1.75;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--off-white); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+  .about-img-wrap {
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .about-img-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(26,158,110,0.15) 0%, transparent 60%);
+  }
+  .about-big-icon {
+    font-size: 80px;
+    background: linear-gradient(135deg, var(--green-light), #7fffd4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700; color: white;
+    margin-bottom: 4px; position: relative; z-index: 1;
+  }
+  .about-qual {
+    font-size: 13px; color: var(--green-light);
+    font-weight: 600; letter-spacing: 0.5px;
+    position: relative; z-index: 1;
+  }
+
+  .about-badge-row {
+    display: flex; gap: 12px; margin-top: 24px; position: relative; z-index: 1;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .mini-badge {
+    background: rgba(26,158,110,0.18);
+    border: 1px solid rgba(26,158,110,0.3);
+    color: var(--green-light);
+    font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 50px;
+  }
+
+  .about-text .section-desc { max-width: 100%; margin-bottom: 28px; }
+  .about-highlights {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 10px;
+  }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: white;
+    padding: 14px 16px; border-radius: 12px;
+    border: 1px solid rgba(26,158,110,0.12);
+    transition: all var(--transition);
+  }
+  .highlight-item:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,158,110,0.12); }
+  .highlight-item i { color: var(--green); font-size: 16px; margin-top: 2px; }
+  .highlight-item span { font-size: 13px; font-weight: 500; color: var(--navy); line-height: 1.4; }
+
+  /* ── SERVICES ── */
+  .services { background: white; }
+  .services-header { text-align: center; margin-bottom: 50px; }
+  .services-header .section-label { justify-content: center; }
+  .services-header .section-desc { margin: 0 auto; text-align: center; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px; max-width: 1100px; margin: 0 auto;
+  }
+
+  .service-card {
+    background: white;
+    border: 1.5px solid rgba(13,34,67,0.08);
+    border-radius: 20px;
+    padding: 36px 24px;
+    text-align: center;
+    transition: all var(--transition);
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    opacity: 0; transition: opacity var(--transition);
+  }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(26,158,110,0.2); border-color: var(--green); }
+  .service-card:hover::before { opacity: 1; }
+  .service-card:hover .svc-icon,
+  .service-card:hover .svc-title,
+  .service-card:hover .svc-desc { color: white; }
+  .service-card:hover .svc-icon-wrap { background: rgba(255,255,255,0.2); }
+
+  .svc-icon-wrap {
+    width: 72px; height: 72px;
+    background: rgba(26,158,110,0.1);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    position: relative; z-index: 1;
+    transition: background var(--transition);
+  }
+  .svc-icon {
+    font-size: 30px; color: var(--green);
+    position: relative; z-index: 1;
+    transition: color var(--transition);
+  }
+  .svc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--navy); margin-bottom: 10px;
+    position: relative; z-index: 1;
+    transition: color var(--transition);
+  }
+  .svc-desc {
+    font-size: 13.5px; color: var(--text-muted);
+    line-height: 1.65; position: relative; z-index: 1;
+    transition: color var(--transition);
+  }
+
+  /* ── WHY CHOOSE US ── */
+  .why {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    position: relative; overflow: hidden;
+  }
+  .why::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(26,158,110,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,158,110,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .why-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .why-header { text-align: center; margin-bottom: 50px; }
+  .why-header .section-label { justify-content: center; color: var(--green-light); }
+  .why-header .section-label::before { background: linear-gradient(90deg, var(--green-light), #7fffd4); }
+  .why-header .section-title { color: white; }
+  .why-header .section-desc { color: rgba(255,255,255,0.55); margin: 0 auto; text-align: center; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .why-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    padding: 32px 24px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: all var(--transition);
+  }
+  .why-box:hover {
+    background: rgba(26,158,110,0.18);
+    border-color: rgba(26,158,110,0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  }
+  .why-icon {
+    font-size: 34px; color: var(--green-light);
+    margin-bottom: 16px; display: block;
+  }
+  .why-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: white; margin-bottom: 8px;
+  }
+  .why-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--off-white); }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: start;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .contact-info { }
+  .contact-info .section-desc { margin-bottom: 40px; }
+
+  .contact-items { display: flex; flex-direction: column; gap: 20px; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: white; border: 1px solid rgba(26,158,110,0.12);
+    border-radius: 16px; padding: 20px 22px;
+    transition: all var(--transition);
+  }
+  .contact-item:hover { border-color: var(--green); box-shadow: 0 8px 24px rgba(26,158,110,0.12); transform: translateX(4px); }
+  .c-icon {
+    width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: white;
+  }
+  .c-label { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+  .c-val { font-size: 14.5px; font-weight: 500; color: var(--navy); line-height: 1.6; }
+  .c-val a { color: var(--navy); text-decoration: none; }
+  .c-val a:hover { color: var(--green); }
+
+  /* Map / CTA card */
+  .contact-cta {
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    border-radius: 24px; padding: 48px 40px;
+    text-align: center; color: white;
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .contact-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(26,158,110,0.15) 0%, transparent 60%);
+  }
+  .contact-cta-icon {
+    font-size: 60px;
+    background: linear-gradient(135deg, var(--green-light), #7fffd4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .contact-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .contact-cta p {
+    font-size: 14px; color: rgba(255,255,255,0.6);
+    margin-bottom: 32px; line-height: 1.7;
+    position: relative; z-index: 1;
+  }
+  .cta-btns { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
+  .cta-call {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: white; text-decoration: none;
+    padding: 14px 28px; border-radius: 50px;
+    font-size: 15px; font-weight: 600;
+    box-shadow: 0 6px 20px rgba(26,158,110,0.4);
+    transition: all var(--transition);
+  }
+  .cta-call:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(26,158,110,0.55); }
+  .cta-wa {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: white; text-decoration: none;
+    padding: 14px 28px; border-radius: 50px;
+    font-size: 15px; font-weight: 600;
+    transition: all var(--transition);
+  }
+  .cta-wa:hover { background: rgba(37,211,102,0.2); border-color: #25d366; transform: translateY(-3px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(26,158,110,0.2);
+    padding: 36px 5%;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: gap;
+    gap: 16px;
+  }
+  .footer-logo-wrap { display: flex; align-items: center; gap: 12px; }
+  .footer-logo-wrap .nav-logo-text span:first-child { color: white; }
+  .footer-unit {
+    font-size: 13px; color: rgba(255,255,255,0.45);
+    border-left: 1px solid rgba(255,255,255,0.12);
+    padding-left: 20px;
+  }
+  .footer-unit strong { color: rgba(255,255,255,0.7); }
+  .footer-copy {
+    font-size: 12.5px; color: rgba(255,255,255,0.35);
+    text-align: right;
+  }
+
+  /* ── FLOATING WHATSAPP ── */
+  .float-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+    width: 58px; height: 58px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: white;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+    text-decoration: none;
+    transition: all var(--transition);
+    animation: wa-bounce 3s ease-in-out infinite;
+  }
+  .float-wa:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,0.6); }
+  @keyframes wa-bounce {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.04) translateY(-4px); }
+  }
+  .float-wa-tooltip {
+    position: absolute; right: 70px; top: 50%;
+    transform: translateY(-50%);
+    background: var(--navy);
+    color: white; font-size: 12px; font-weight: 600;
+    padding: 7px 14px; border-radius: 50px;
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity var(--transition);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .float-wa:hover .float-wa-tooltip { opacity: 1; }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-glass-card { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta-wrap { display: none; }
+    .hamburger { display: flex; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 36px; }
+    .about-highlights { grid-template-columns: 1fr; }
+    section { padding: 70px 5%; }
+    footer { flex-direction: column; text-align: center; align-items: center; }
+    .footer-unit { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 12px; }
+    .footer-copy { text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .hero-btns { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-icon"><i class="fa-solid fa-capsules"></i></div>
+    <div class="nav-logo-text">
+      <span>New Ajees Medicals</span>
+      <span>Licensed Pharmacy</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="nav-cta-wrap"><a href="tel:+919876543210" class="nav-cta"><i class="fa-solid fa-phone"></i> Call Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="tel:+919876543210" class="mob-cta"><i class="fa-solid fa-phone"></i>&nbsp; Call Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-orb orb1"></div>
+  <div class="hero-bg-orb orb2"></div>
+  <div class="hero-bg-orb orb3"></div>
+
+  <!-- Floating icons -->
+  <i class="float-icon fa-solid fa-pills" style="left:5%;animation-duration:12s;animation-delay:0s;"></i>
+  <i class="float-icon fa-solid fa-heart-pulse" style="left:15%;animation-duration:15s;animation-delay:3s;"></i>
+  <i class="float-icon fa-solid fa-stethoscope" style="left:25%;animation-duration:10s;animation-delay:6s;"></i>
+  <i class="float-icon fa-solid fa-syringe" style="left:75%;animation-duration:13s;animation-delay:1s;"></i>
+  <i class="float-icon fa-solid fa-microscope" style="left:85%;animation-duration:11s;animation-delay:4s;"></i>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fa-solid fa-circle-check"></i>
+      <span>Trusted Pharmacy · Est. 2008</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="highlight">New Ajees</span><br>Medicals
+    </h1>
+    <p class="hero-tagline">Your Health, Our Priority</p>
+    <div class="hero-btns">
+      <a href="tel:+919876543210" class="btn-primary">
+        <i class="fa-solid fa-phone"></i> Call Now
+      </a>
+      <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-glass-card">
+    <div class="glass-stat">
+      <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+      <div class="stat-info">
+        <span>4.9 / 5</span>
+        <span>Customer Rating</span>
+      </div>
+    </div>
+    <div class="glass-stat">
+      <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="stat-info">
+        <span>10,000+</span>
+        <span>Happy Patients</span>
+      </div>
+    </div>
+    <div class="glass-stat">
+      <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+      <div class="stat-info">
+        <span>1.5+ Yrs</span>
+        <span>Pharmacy Experience</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-img-wrap">
+        <i class="fa-solid fa-user-doctor about-big-icon"></i>
+        <div class="about-name">Mr. Mohamed Iliyas</div>
+        <div class="about-qual">D.Pharm · Licensed Pharmacist</div>
+        <div class="about-badge-row">
+          <span class="mini-badge">1.5+ Years Exp.</span>
+          <span class="mini-badge">D.Pharm</span>
+          <span class="mini-badge">Licensed</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-2">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">Qualified Care,<br>Trusted Every Day</h2>
+      <p class="section-desc">
+        New Ajees Medicals has been serving the community with genuine medicines, professional advice, and a heartfelt commitment to patient wellbeing. Our qualified D.Pharm pharmacist ensures every prescription is dispensed with accuracy and care.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <i class="fa-solid fa-certificate"></i>
+          <span>D.Pharm Certified Pharmacist</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>1.5+ Years of Pharmacy Service</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>100% Genuine & Licensed Medicines</span>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-house-medical"></i>
+          <span>Free Home Delivery Available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-desc">Quality healthcare services designed to make your life easier and your health better.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-icon-wrap"><i class="fa-solid fa-tag svc-icon"></i></div>
+      <div class="svc-title">Medicine Discounts</div>
+      <p class="svc-desc">Enjoy competitive discounts on a wide range of branded and generic medicines on every purchase.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="svc-icon-wrap"><i class="fa-solid fa-truck-fast svc-icon"></i></div>
+      <div class="svc-title">Free Home Delivery</div>
+      <p class="svc-desc">Get your medicines delivered right to your doorstep — quickly, safely, and completely free of charge.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="svc-icon-wrap"><i class="fa-solid fa-heart-pulse svc-icon"></i></div>
+      <div class="svc-title">Free BP Check</div>
+      <p class="svc-desc">Walk in anytime for a complimentary blood pressure screening — no appointment needed.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-4">
+      <div class="svc-icon-wrap"><i class="fa-solid fa-droplet svc-icon"></i></div>
+      <div class="svc-title">Free Sugar Check</div>
+      <p class="svc-desc">Instant blood glucose testing at no cost to help you monitor and manage your health proactively.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why">
+  <div class="why-inner">
+    <div class="why-header reveal">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Built on Trust &amp; Care</h2>
+      <p class="section-desc">Four pillars that define every interaction at New Ajees Medicals.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-box reveal reveal-delay-1">
+        <i class="fa-solid fa-shield-halved why-icon"></i>
+        <div class="why-title">Genuine Medicines</div>
+        <p class="why-desc">Every product sourced from verified, licensed distributors — zero compromise on authenticity.</p>
+      </div>
+      <div class="why-box reveal reveal-delay-2">
+        <i class="fa-solid fa-hand-holding-heart why-icon"></i>
+        <div class="why-title">Caring Service</div>
+        <p class="why-desc">We listen, advise, and treat every customer with warmth, patience, and personal attention.</p>
+      </div>
+      <div class="why-box reveal reveal-delay-3">
+        <i class="fa-solid fa-indian-rupee-sign why-icon"></i>
+        <div class="why-title">Fair Prices</div>
+        <p class="why-desc">Transparent pricing with consistent discounts — healthcare should never be a financial burden.</p>
+      </div>
+      <div class="why-box reveal reveal-delay-4">
+        <i class="fa-solid fa-lightbulb why-icon"></i>
+        <div class="why-title">Expert Advice</div>
+        <p class="why-desc">Our qualified pharmacist is always ready to guide you on dosage, interactions, and wellness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-label reveal">Get In Touch</div>
+      <h2 class="section-title reveal">Visit or Call Us<br>Anytime</h2>
+      <p class="section-desc reveal">We're here for you — walk in, call, or WhatsApp us for medicines, health queries, or free check-ups.</p>
+      <div class="contact-items">
+        <div class="contact-item reveal reveal-delay-1">
+          <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-val">
+              <a href="tel:+919876543210">+91 98765 43210</a><br>
+              <a href="tel:+919876543211">+91 98765 43211</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item reveal reveal-delay-2">
+          <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="c-label">Address</div>
+            <div class="c-val">Main Road, Near Mosque,<br>Madurai, Tamil Nadu – 625001</div>
+          </div>
+        </div>
+        <div class="contact-item reveal reveal-delay-3">
+          <div class="c-icon"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <div class="c-label">Opening Hours</div>
+            <div class="c-val">Mon – Sat: 8:00 AM – 10:00 PM<br>Sunday: 9:00 AM – 2:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-cta reveal reveal-delay-2">
+      <i class="fa-solid fa-pills contact-cta-icon"></i>
+      <h3>Need Medicines Fast?</h3>
+      <p>Call or WhatsApp us now. We'll ensure your medicines are ready or delivered at the earliest.</p>
+      <div class="cta-btns">
+        <a href="tel:+919876543210" class="cta-call">
+          <i class="fa-solid fa-phone"></i> Call Now
+        </a>
+        <a href="https://wa.me/919876543210" target="_blank" class="cta-wa">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap">
+    <div class="nav-logo-icon"><i class="fa-solid fa-capsules"></i></div>
+    <div class="nav-logo-text">
+      <span>New Ajees Medicals</span>
+      <span style="color: var(--green-light);">Licensed Pharmacy</span>
+    </div>
+  </div>
+  <div class="footer-unit">A unit of <strong>New Fathima Suppliers</strong></div>
+  <div class="footer-copy">&copy; 2025 New Ajees Medicals.<br>All rights reserved.</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919876543210" target="_blank" class="float-wa" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span class="float-wa-tooltip">Chat on WhatsApp</span>
+</a>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target) && !mobileMenu.contains(e.target)) closeMobile();
+  });
+</script>
+</body>
+</html>
